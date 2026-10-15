@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TecniMerlo / Servicio Técnico y Refrigeración | Servicio Técnico y Refrigeración en Merlo, San Luis</title>
+    <!-- Tipografías de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==========================================================================
+           1. RESET & VARIABLES DINÁMICAS
+           ========================================================================== */
+        :root {
+            --primary: #028090;          /* Azul Técnico */
+            --primary-dark: #026875;
+            --accent: #00A896;           /* Aquamarine / Verde Agua */
+            --accent-glow: rgba(0, 168, 150, 0.35);
+            --dark: #0A192F;             /* Azul Noche Profundo */
+            --dark-card: #112240;
+            --light-bg: #F0F4F8;         /* Gris Hielo Premium */
+            --white: #FFFFFF;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --font-head: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 4px 6px -1px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(2, 128, 144, 0.12);
+            --shadow-hover: 0 20px 30px -10px rgba(2, 128, 144, 0.22);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--light-bg);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           2. HEADER GLASSMORPHISM & NAVEGACIÓN
+           ========================================================================== */
+        .header {
+            background: rgba(10, 25, 47, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem 0;
+        }
+
+        .logo a {
+            font-family: var(--font-head);
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo a span {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #CBD5E1;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: var(--white) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px var(--accent-glow);
+        }
+
+        /* ==========================================================================
+           3. HERO DINO & ANIMADO
+           ========================================================================== */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, rgba(10, 25, 47, 0.92) 0%, rgba(2, 128, 144, 0.88) 100%), 
+                        url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+            color: var(--white);
+            padding: 8rem 0 6rem 0;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 168, 150, 0.2);
+            border: 1px solid var(--accent);
+            padding: 6px 16px;
+            border-radius: 30px;
+            color: #A7F3D0;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-family: var(--font-head);
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #A7F3D0, #38BDF8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #E2E8F0;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0.95rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: var(--white);
+            box-shadow: 0 10px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        .hero-card-preview {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .hero-stat-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-stat-number {
+            font-family: var(--font-head);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        /* ==========================================================================
+           4. SECCIÓN NOSOTROS Y TRAYECTORIA
+           ========================================================================== */
+        .nosotros {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+
+        .nosotros-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .nosotros-img-container {
+            position: relative;
+        }
+
+        .nosotros-img-main {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nosotros-badge-floating {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            border-left: 5px solid var(--accent);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .nosotros-texto h2 {
+            font-family: var(--font-head);
+            font-size: 2.3rem;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-text {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* ==========================================================================
+           5. TARJETAS DE SERVICIOS
+           ========================================================================== */
+        .servicios {
+            padding: 6rem 0;
+            background: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-head);
+            font-size: 2.4rem;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .card-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(10, 25, 47, 0.85);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            backdrop-filter: blur(5px);
+        }
+
+        .card-body {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-body h3 {
+            font-family: var(--font-head);
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .card-link:hover {
+            color: var(--accent);
+            gap: 10px;
+        }
+
+        /* ==========================================================================
+           6. SECCIÓN UBICACIÓN Y MAPA DE GOOGLE MAPS
+           ========================================================================== */
+        .ubicacion {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+
+        .ubicacion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .mapa-container {
+            width: 100%;
+            height: 380px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 2px solid #E2E8F0;
+        }
+
+        .mapa-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .ubicacion-info h3 {
+            font-family: var(--font-head);
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .ubicacion-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .ubicacion-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .ubicacion-icon {
+            background: var(--light-bg);
+            color: var(--primary);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* ==========================================================================
+           7. BANNER DE GARANTÍA & COBERTURA
+           ========================================================================== */
+        .cobertura {
+            background: linear-gradient(135deg, var(--dark), var(--primary-dark));
+            color: var(--white);
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .cobertura-box {
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .cobertura-box h2 {
+            font-family: var(--font-head);
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .features-pills {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* ==========================================================================
+           8. CONTACTO MODERNO Y FORMULARIO
+           ========================================================================== */
+        .contacto {
+            padding: 6rem 0;
+            background: var(--light-bg);
+        }
+
+        .contacto-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            border: 1.5px solid #E2E8F0;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            background: #F8FAFC;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .info-sidebar {
+            background: var(--dark);
+            color: var(--white);
+            border-radius: var(--radius-md);
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item h4 {
+            color: var(--accent);
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .wsp-banner {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            padding: 1.2rem 1.5rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            color: var(--white);
+            margin-top: 1.5rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+        }
+
+        .wsp-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ==========================================================================
+           9. BOTÓN FLOTANTE DE WHATSAPP (SVG OFICIAL)
+           ========================================================================== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: #FFF;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+            animation: pulse-wsp 2s infinite;
+        }
+
+        .whatsapp-float svg {
+            width: 34px;
+            height: 34px;
+            fill: #FFFFFF;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #1EBE5D;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse-wsp {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* ==========================================================================
+           10. FOOTER Y RESPONSIVE
+           ========================================================================== */
+        .footer {
+            background: #050E1A;
+            color: #94A3B8;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid, .nosotros-grid, .ubicacion-grid, .contacto-card {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-card-preview { margin-top: 2rem; }
+            .nosotros-badge-floating { position: static; margin-top: 1rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container { flex-direction: column; gap: 1rem; }
+            .nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .hero-buttons { flex-direction: column; align-items: stretch; }
+            .contacto-card { padding: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botón Flotante con Logo Oficial de WhatsApp -->
+    <a href="https://wa.me/5492664546850" class="whatsapp-float" target="_blank" title="Contactanos por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
+    </a>
+
+    <!-- Encabezado con efecto Vidrio / Glassmorphism -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#inicio">Tecni<span>Merlo</span></a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                    <li><a href="#contacto" class="btn-nav">Contacto Directo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="inicio" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <span class="hero-tag">⚡ Servicio Técnico Oficial en Merlo, San Luis</span>
+                    <h1>Refrigeración Profesional y <span>Reparación del Hogar</span></h1>
+                    <p>Especialistas en la colocación certificada de Aires Acondicionados, reparación de Heladeras y Lavarropas. Soluciones duraderas con respaldo directo.</p>
+                    <div class="hero-buttons">
+                        <a href="#contacto" class="btn btn-primary">Pedir Presupuesto Gratis 🛠️</a>
+                        <a href="https://wa.me/5492664546850" target="_blank" class="btn btn-secondary">WhatsApp: 2664546850</a>
+                    </div>
+                </div>
+
+                <div class="hero-card-preview">
+                    <div class="hero-stat-box">
+                        <span class="hero-stat-number">+30</span>
+                        <div>
+                            <strong style="display:block; color:white;">Años de Servicio</strong>
+                            <span style="color:#94A3B8; font-size:0.85rem;">Atención en Merlo y zonas aledañas</span>
+                        </div>
+                    </div>
+                    <p style="font-size:0.95rem; color:#E2E8F0; margin-bottom:1rem;">
+                        ✔ Diagnósticos certeros a domicilio<br>
+                        ✔ Repuestos 100% de alta durabilidad<br>
+                        ✔ Garantía por escrito en cada trabajo
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN NOSOTROS -->
+        <section id="nosotros" class="nosotros">
+            <div class="container nosotros-grid">
+                <div class="nosotros-img-container">
+                    <img src="https://i.ibb.co/G33HWNyY/watermarked-img-6615350320552358727.jpg" alt="Técnico Reparando Electrodoméstico" class="nosotros-img-main">
+                    <div class="nosotros-badge-floating">
+                        <strong style="font-size:1.2rem; display:block;">Atención Legítima</strong>
+                        <span style="font-size:0.85rem; color:#CBD5E1;">Compromiso, experiencia y honestidad en cada diagnóstico.</span>
+                    </div>
+                </div>
+
+                <div class="nosotros-texto">
+                    <span class="section-tag">Trayectoria e Idoneidad</span>
+                    <h2>Más de 30 años solucionando los problemas de tu hogar</h2>
+                    <p class="highlight-text">Fundado sobre valores de confianza y perfeccionamiento técnico constante.</p>
+                    <p>En <strong>TecniMerlo</strong> nos dedicamos al mantenimiento y reparación técnica de electrodomésticos esenciales: heladeras no-frost y cíclicas, lavarropas automáticos y secarropas. Además, ofrecemos el servicio de instalación matriculada de equipos de aire acondicionado split para mantener la climatización óptima de tu espacio.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN SERVICIOS -->
+        <section id="servicios" class="servicios">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Servicios Especializados</span>
+                    <h2 class="section-title">Soluciones para tus Equipos</h2>
+                    <p style="color:var(--text-muted)">Utilizamos instrumental específico de refrigeración y repuestos homologados.</p>
+                </div>
+
+                <div class="cards-grid">
+                    <article class="card">
+                        <div class="card-img-wrapper">
+                            <span class="card-category">Climatización</span>
+                            <img src="https://bvcnoticias.com.ar/wp-content/uploads/2023/06/5c2c87d6-df16-4dd7-93eb-7f41b4443e26_16-9-discover-aspect-ratio_default_0.jpg" alt="Instalación de Aire Acondicionado">
+                        </div>
+                        <div class="card-body">
+                            <h3>Instalación de Aires</h3>
+                            <p>Colocación profesional de Splits. Prueba de vacío de cañerías, sellado de fugas y prueba de rendimiento.</p>
+                            <a href="https://wa.me/5492664546850" target="_blank" class="card-link">Consultar Instalación &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-img-wrapper">
+                            <span class="card-category">Reparación</span>
+                            <img src="https://www.pardo.com.ar/arquivos/pardo-heladeras-capacidad-20261007.jpg?v=202610071907" alt="Reparación de Heladeras y Freezers">
+                        </div>
+                        <div class="card-body">
+                            <h3>Heladeras y Freezers</h3>
+                            <p>Carga de gas refrigerante, reemplazo de bochas/motores, cambio de placas electrónicas y placas No-Frost.</p>
+                            <a href="https://wa.me/5492664546850" target="_blank" class="card-link">Reparar Heladera &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-img-wrapper">
+                            <span class="card-category">Línea Blanca</span>
+                            <img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?auto=format&fit=crop&w=600&q=80" alt="Service de Lavarropas">
+                        </div>
+                        <div class="card-body">
+                            <h3>Lavarropas y Secarropas</h3>
+                            <p>Cambio de rodamientos, bombas de agua, soluciones a problemas de centrifugado y reparación de plaquetas.</p>
+                            <a href="https://wa.me/5492664546850" target="_blank" class="card-link">Reparar Lavarropas &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-img-wrapper">
+                            <span class="card-category">Mantenimiento</span>
+                            <img src="https://mercadolider-media.sfo3.digitaloceanspaces.com/wp-content/uploads/2025/07/14091546/MAR-7173-3.jpg" alt="Mantenimiento Preventivo">
+                        </div>
+                        <div class="card-body">
+                            <h3>Service Preventivo</h3>
+                            <p>Limpieza técnica de turbinas, desinfección de filtros de aire acondicionado y optimización de consumo.</p>
+                            <a href="https://wa.me/5492664546850" target="_blank" class="card-link">Agendar Service &rarr;</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN UBICACIÓN -->
+        <section id="ubicacion" class="ubicacion">
+            <div class="container">
+                <div class="section-header" style="margin-bottom:2.5rem;">
+                    <span class="section-tag">Ubicación & Cobertura</span>
+                    <h2 class="section-title">¿Dónde estamos?</h2>
+                    <p style="color:var(--text-muted)">Visitanos en nuestro taller o solicitá atención a domicilio en Villa de Merlo y zona.</p>
+                </div>
+
+                <div class="ubicacion-grid">
+                    <div class="mapa-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3356.3262602780727!2d-65.01633512351286!3d-32.34827874088924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d32292f7584101%3A0x6b779a1f2b4c10a!2sEl%20Cipr%C3%A9s%20308%2C%20D5881%20Villa%20de%20Merlo%2C%20San%20Luis!5e0!3m2!1ses!2sar!4v1710000000000!5m2!1ses!2sar" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <div class="ubicacion-info">
+                        <h3>Taller y Servicio Técnico</h3>
+                        <p>Atención presencial en nuestro local y visitas a domicilio en el Valle del Conlara.</p>
+
+                        <ul class="ubicacion-list">
+                            <li>
+                                <span class="ubicacion-icon">📍</span>
+                                <div>
+                                    <strong>Dirección del Local:</strong>
+                                    <p style="color:var(--text-muted); font-size:0.95rem;">El Ciprés 308, Villa de Merlo, San Luis (CP 5881)</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="ubicacion-icon">🚗</span>
+                                <div>
+                                    <strong>Zonas de Cobertura A domicilio:</strong>
+                                    <p style="color:var(--text-muted); font-size:0.95rem;">Villa de Merlo, Carpintería, Los Molles, Santa Rosa del Conlara, Cerro de Oro y alrededores.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="ubicacion-icon">📞</span>
+                                <div>
+                                    <strong>Contacto Directo:</strong>
+                                    <p style="color:var(--text-muted); font-size:0.95rem;">WhatsApp / Llamadas: <strong>266 454-6850</strong></p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BANNER DE RESPALDO -->
+        <section id="cobertura" class="cobertura">
+            <div class="container cobertura-box">
+                <h2>Servicio Técnico con Garantía Escrita</h2>
+                <p style="color:#CBD5E1;">Cobertura veloz en Villa de Merlo, Carpintería, Los Molles, Santa Rosa del Conlara y alrededores.</p>
+                
+                <div class="features-pills">
+                    <div class="pill"><span>✅</span> Presupuestos Claros</div>
+                    <div class="pill"><span>⏱️</span> Asistencia Puntual</div>
+                    <div class="pill"><span>🛡️</span> Repuestos Originales</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULARIO DE CONTACTO -->
+        <section id="contacto" class="contacto">
+            <div class="container">
+                <div class="contacto-card">
+                    <div class="form-side">
+                        <h3 style="font-family:var(--font-head); font-size:1.8rem; margin-bottom:0.5rem; color:var(--dark);">Enviar una Consulta</h3>
+                        <p style="color:var(--text-muted); margin-bottom:1.5rem;">Completá los datos y te respondemos a la brevedad para coordinar tu visita técnica.</p>
+
+                        <form action="#" method="POST" onsubmit="event.preventDefault(); alert('¡Consulta enviada con éxito! Nos pondremos en contacto pronto.');">
+                            <div class="form-group">
+                                <label for="nombre">Nombre y Apellido</label>
+                                <input type="text" id="nombre" class="form-control" placeholder="Ej: Roberto Gómez" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono de Contacto</label>
+                                <input type="tel" id="telefono" class="form-control" placeholder="Ej: 266 454-6850" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="servicio">Electrodoméstico o Servicio</label>
+                                <select id="servicio" class="form-control" required>
+                                    <option value="" disabled selected>Seleccioná una opción</option>
+                                    <option value="aire">Aire Acondicionado (Instalación / Service)</option>
+                                    <option value="heladera">Heladera / Freezer</option>
+                                    <option value="lavarropas">Lavarropas / Secarropas</option>
+                                    <option value="otro">Otro electrodoméstico</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="mensaje">Detalles del problema</label>
+                                <textarea id="mensaje" class="form-control" rows="4" placeholder="Describí brevemente la falla o consulta..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Mensaje 🚀</button>
+                        </form>
+                    </div>
+
+                    <div class="info-sidebar">
+                        <div>
+                            <h3 style="font-family:var(--font-head); font-size:1.5rem; color:var(--white); margin-bottom:1rem;">Canales Directos</h3>
+                            <p style="color:#CBD5E1; font-size:0.95rem; margin-bottom:2rem;">¿Tenés una urgencia con tu heladera o aire acondicionado? Comunicate de inmediato con el taller.</p>
+                            
+                            <div class="info-item">
+                                <h4>Atención en Taller</h4>
+                                <p style="color:#E2E8F0;">El Ciprés 308, Villa de Merlo</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Horario de Atención</h4>
+                                <p style="color:#E2E8F0;">Lunes a Sábados de 8:00 a 20:00 hs</p>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/5492664546850" target="_blank" class="wsp-banner">
+                            <svg width="22" height="22" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="#FFF"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                            Hablar por WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 <strong>TecniMerlo</strong>. El Ciprés 308, Villa de Merlo, San Luis, Argentina.</p>
+        </div>
+    </footer>
+
+</body>
+</html
